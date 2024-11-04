@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Laptop{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="{% url 'laptop' %}" class="list-group-item list-group-item-action"
+        aria-current="true">All Laptop</a>
+        <a href="{% url 'laptopdata' 'lenovo' %}" class="list-group-item list-group-item-action"
+        aria-current="true">Lenovo</a>
+        <a href="{% url 'laptopdata' 'dell' %}" class="list-group-item list-group-item-action"
+        aria-current="true">Dell</a>
+    </div>
+  </div>
+  <div class="col-sm-9  ">
+    <div class="row">
+        {% for product in laptops %}
+        <div class="col-md-4 my-2">
+            <div class="card shadow-lg bg-white rounded" style="width: 18rem;">
+                <a href="{% url 'product-detail' product.id %}" ><img src="{{product.product_image.url}}"  class="mt-2 p-3" style=" height:15rem;" alt="..." id="img"></a>
+                <div class="card-body">
+                    <h5 class="card-title mb-3">{{product.title}}</h5>
+                    <h5 class="font-weight-bold mb-0">₹ {{product.discounted_price}}</h5><p class="fw-light text-decoration-line-through mb-3">₹.{{product.selling_price}}</p>
+                    <a href="{% url 'product-detail' product.id %}"  class="btn btn-dark rounded-0">View Product</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

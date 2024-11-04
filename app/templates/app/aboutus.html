@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+
+{% block main-content %}
+
+<style>
+    
+ .about .row{
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   gap:1rem;
+   padding: 20px;
+}
+
+.about .row .image{
+   flex:1 1 40rem;
+}
+
+.about .row .image img{
+   width: 80%;
+}
+
+.about .row .content{
+   flex:1 1 40rem;
+}
+
+.about .row .content h3{
+   font-size: 3rem;
+    
+}
+
+.about .row .content p{
+
+   font-size: 1rem;
+   color:var(--light-color);
+   padding:1rem 0;
+}
+
+.about .row .content .btn{
+   display: inline-block;
+   width: auto;
+}
+</style>
+
+
+<div class="about overflow-hidden">
+
+    <div class="row ">
+ 
+       <div class="image">
+          <img src="{% static 'app/images/empty.png' %}" alt="">
+       </div>
+ 
+       <div class="content">
+          <h3>why choose us?</h3>
+          
+          <p> 
+            Hello we have created this website for Commercial purposes and the only purpose of this website is that people can buy digital devices easily at home 
+          and make future bright of their own and their relative's  in the digital sector so shop and stay with us.
+          <br><br>We are passionate about bringing you to the provide a best products at the best prices,
+              Our mission is to make shopping easy and affordable for everyone,
+              Our goal is to provide you with a seamless shopping experience from start to finish,
+              We are committed to delivering exceptional customer service and quality products every time,</p>
+          <a href="{% url 'contactus' %}" class="btn text-white" style="background-color: #03045e; ">contact us</a>
+       </div>
+ 
+    </div>
+ 
+   </div>
+
+{% endblock main-content %}

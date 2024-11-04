@@ -1,0 +1,78 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main-content %}
+
+ <style>
+  section{
+   padding:2rem;
+   max-width: 1200px;
+   margin:0 auto;
+}
+.heading{
+   
+   text-align: center;
+   font-size: 2rem;
+   color: var(--black);
+}
+.heading span{
+   background-color:red;
+   color: #fff;
+   display: inline-block;
+   padding: .5rem 3rem;
+   clip-path: polygon(100% 0,93% 50%,100% 99%,0% 100%,7% 50%,0% 0%);
+}
+#main-container{
+   padding:5rem;
+   border:1px solid black;
+   margin-top: 1rem;
+}
+ </style>
+
+<section class="quick-view">
+
+  <h1 class="heading">Quick <span>View</span></h1>
+ 
+<div class="container my-4" id="main-container">
+ <div class="row">
+  <div class="col-sm-4 text-center align-self-center">
+   <img src="{{product.product_image.url}}" alt="" class="rounded float-start" style="height: 300px; width: 300px;">
+  </div>
+  <div class="col-sm-6 offset-sm-1">
+   <h1>{{product.title}}</h1>
+   <hr>
+   <p>{{product.description}}</p> <br>
+   <h4>Rs. {{product.discounted_price}} <small class="fw-light text-decoration-line-through">Rs. {{product.selling_price}}</small></h4> <br>
+
+
+   <!--<form action="/add-to-cart/" class="d-inline">
+
+      <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+      <button type="submit" class="btn btn-dark shadow px-5 py-2" >Add to Cart</button>
+
+   </form>-->
+   <!--<a href="{% url 'add-to-cart' %}" class="btn btn-dark shadow px-5 py-2">Add to Cart</a>-->
+
+   <!-- productdetail.html -->
+
+<form action="/add-to-cart/" method="get" class="d-inline">
+   <input type="hidden" name="prod_id" value="{{ product.id }}" id="prod_id">
+   {% if not is_product_in_cart %}
+     <button type="submit" class="btn btn-dark shadow px-5 py-2 rounded-0">Add to Cart</button>
+   {% else %}
+     <p class="fw-bold text-danger">This product is already in your cart.</p>
+     <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 rounded-0"> Go to Cart</a>
+      
+   {% endif %}
+ </form>
+  
+
+ 
+
+   <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4 rounded-0">Buy Now</a>
+    
+  </div>
+ </div>
+</div>
+</section>
+{% endblock main-content %}
